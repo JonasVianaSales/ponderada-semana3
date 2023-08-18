@@ -20,8 +20,15 @@
     $employee_name = htmlentities($_POST['NAME']);
     $employee_address = htmlentities($_POST['ADDRESS']);
 
-    if (strlen($employee_name) || strlen($employee_address)) {
-        AddEmployee($connection, $employee_name, $employee_address);
+    /* Fields de Input da Ponderada*/
+
+    $ponderada_id = htmlentities($_POST['id']);
+    $ponderada_nome = htmlentities($_POST['nome']);
+    $ponderada_idade = htmlentities($_POST['idade']);
+    $ponderada_dinheiro = htmlentities($_POST['dinheiro']);
+
+    if (strlen($ponderada_id) && strlen($ponderada_nome) && strlen($ponderada_idade) && strlen($ponderada_dinheiro)) {
+        AddPonderada($connection, $ponderada_id, $ponderada_nome, $ponderada_idade, $ponderada_dinheiro);
     }
     ?>
 
@@ -65,7 +72,7 @@
                     <input type="text" name="idade" maxlength="2" size="10" />
                 </td>
                 <td>
-                    <input type="number" name="dinheiro" maxlength="16" size="20" />
+                    <input type="number" step="0.01" name="dinheiro" maxlength="16" size="20" />
                 </td>
                 <td>
                     <input type="submit" value="Enviar Dados" />
@@ -156,7 +163,7 @@ function AddPonderada($connection, $id, $name, $age, $money)
     $a = mysqli_real_escape_string($connection, $age);
     $m = mysqli_real_escape_string($connection, $money);
 
-    $query = "INSERT INTO ponderada (id, nome , idade, dinheiro) VALUES ('$i', '$n', '$a', '$m');";
+    $query = "INSERT INTO ponderada (id, nome, idade, dinheiro) VALUES ('$i', '$n', '$a', '$m');";
 
     if (!mysqli_query($connection, $query))
         echo ("<p>Erro ao adicionar uma pessoa a ponderada.</p>");
