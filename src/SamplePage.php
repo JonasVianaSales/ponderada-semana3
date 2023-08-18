@@ -49,18 +49,26 @@
     <form action="<?PHP echo $_SERVER['SCRIPT_NAME'] ?>" method="POST">
         <table border="0">
             <tr>
-                <td>NAME</td>
-                <td>ADDRESS</td>
+                <td>ID</td>
+                <td>Nome</td>
+                <td>Idade</td>
+                <td>Dinheiro</td>
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="NAME" maxlength="45" size="30" />
+                    <input type="number" name="id" maxlength="16" size="20" />
                 </td>
                 <td>
-                    <input type="text" name="ADDRESS" maxlength="90" size="60" />
+                    <input type="text" name="nome" maxlength="255" size="60" />
                 </td>
                 <td>
-                    <input type="submit" value="Add Data" />
+                    <input type="text" name="idade" maxlength="2" size="10" />
+                </td>
+                <td>
+                    <input type="number" name="dinheiro" maxlength="16" size="20" />
+                </td>
+                <td>
+                    <input type="submit" value="Enviar Dados" />
                 </td>
             </tr>
         </table>
@@ -83,6 +91,30 @@
             echo "<td>", $query_data[0], "</td>",
                 "<td>", $query_data[1], "</td>",
                 "<td>", $query_data[2], "</td>";
+            echo "</tr>";
+        }
+        ?>
+
+    </table>
+
+    <table border="1" cellpadding="2" cellspacing="2">
+        <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Idade</td>
+            <td>Dinheiro</td>
+        </tr>
+
+        <?php
+
+        $result = mysqli_query($connection, "SELECT * FROM ponderada");
+
+        while ($query_data = mysqli_fetch_row($result)) {
+            echo "<tr>";
+            echo "<td>", $query_data[0], "</td>",
+                "<td>", $query_data[1], "</td>",
+                "<td>", $query_data[2], "</td>",
+                "<td>", $query_data[3], "</td>";
             echo "</tr>";
         }
         ?>
@@ -114,6 +146,20 @@ function AddEmployee($connection, $name, $address)
 
     if (!mysqli_query($connection, $query))
         echo ("<p>Error adding employee data.</p>");
+}
+
+/* Adiciona um campo para a ponderada. */
+function AddPonderada($connection, $id, $name, $age, $money)
+{
+    $i = mysqli_real_escape_string($connection, $id);
+    $n = mysqli_real_escape_string($connection, $name);
+    $a = mysqli_real_escape_string($connection, $age);
+    $m = mysqli_real_escape_string($connection, $money);
+
+    $query = "INSERT INTO ponderada (id, nome , idade, dinheiro) VALUES ('$i', '$n', '$a', '$m');";
+
+    if (!mysqli_query($connection, $query))
+        echo ("<p>Erro ao adicionar uma pessoa a ponderada.</p>");
 }
 
 /* Check whether the table exists and, if not, create it. */
