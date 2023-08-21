@@ -1,8 +1,14 @@
 <?php include "../inc/dbinfo.inc"; ?>
 <html>
 
+<style>
+
+body {font-family: Monaco, monospace; background-color: #F5F5DC}
+
+</style>
+
 <body>
-    <h1>Sample page</h1>
+    <h1>Ponderada Semana 3</h1>
     <?php
 
     /* Connect to MySQL and select the database. */
@@ -56,23 +62,23 @@
     <form action="<?PHP echo $_SERVER['SCRIPT_NAME'] ?>" method="POST">
         <table border="0">
             <tr>
-                <td>Ano de Graduação</td>
+                <td>Dois últimos digitos do ano de graduação</td>
                 <td>Nome</td>
                 <td>Idade</td>
                 <td>Saldo</td>
             </tr>
             <tr>
                 <td>
-                    <input type="number" name="gradYear" maxlength="4" size="10" />
+                    <input type="number" name="gradYear" maxlength="4" size="5" />
                 </td>
                 <td>
-                    <input type="text" name="name" maxlength="255" size="60" />
+                    <input type="text" name="name" maxlength="255" size="40" />
                 </td>
                 <td>
-                    <input type="text" name="age" maxlength="2" size="10" />
+                    <input type="text" name="age" maxlength="2" size="5" />
                 </td>
                 <td>
-                    <input type="number" step="0.01" name="balance" maxlength="16" size="20" />
+                    <input type="number" step="0.01" name="balance" maxlength="16" size="10" />
                 </td>
                 <td>
                     <input type="submit" value="Enviar Dados" />
@@ -103,6 +109,10 @@
         ?>
 
     </table>
+
+    <br>
+    <br>
+    <br>
 
     <table border="3" cellpadding="2" cellspacing="2">
         <tr>
