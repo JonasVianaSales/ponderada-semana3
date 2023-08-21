@@ -22,13 +22,13 @@
 
     /* Fields de Input da Ponderada*/
 
-    $ponderada_gradyear = htmlentities($_POST['gradyear']);
+    $ponderada_gradYear = htmlentities($_POST['gradYear']);
     $ponderada_name = htmlentities($_POST['name']);
     $ponderada_age = htmlentities($_POST['age']);
     $ponderada_balance = htmlentities($_POST['balance']);
 
-    if (strlen($ponderada_gradyear) && strlen($ponderada_name) && strlen($ponderada_age) && strlen($ponderada_balance)) {
-        AddPonderada($connection, $ponderada_gradyear, $ponderada_name, $ponderada_age, $ponderada_balance);
+    if (strlen($ponderada_gradYear) && strlen($ponderada_name) && strlen($ponderada_age) && strlen($ponderada_balance)) {
+        AddPonderada($connection, $ponderada_gradYear, $ponderada_name, $ponderada_age, $ponderada_balance);
     }
     ?>
 
@@ -63,7 +63,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="number" name="gradyear" maxlength="4" size="20" />
+                    <input type="number" name="gradYear" maxlength="4" size="10" />
                 </td>
                 <td>
                     <input type="text" name="name" maxlength="255" size="60" />
@@ -156,14 +156,14 @@ function AddEmployee($connection, $name, $address)
 }
 
 /* Adiciona um campo para a ponderada. */
-function AddPonderada($connection, $gradyear, $name, $age, $balance)
+function AddPonderada($connection, $gradYear, $name, $age, $balance)
 {
-    $gy= mysqli_real_escape_string($connection, $gradyear);
+    $gy= mysqli_real_escape_string($connection, $gradYear);
     $n = mysqli_real_escape_string($connection, $name);
     $a = mysqli_real_escape_string($connection, $age);
     $b = mysqli_real_escape_string($connection, $balance);
 
-    $query = "INSERT INTO ponderada (gradyear, name, age, balance) VALUES ('$gy', '$n', '$a', '$b');";
+    $query = "INSERT INTO ponderada (gradYear, name, age, balance) VALUES ('$gy', '$n', '$a', '$b');";
 
     if (!mysqli_query($connection, $query))
         echo ("<p>Erro ao adicionar uma pessoa a ponderada.</p>");
