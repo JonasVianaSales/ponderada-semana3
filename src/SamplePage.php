@@ -62,20 +62,20 @@ body {font-family: Monaco, monospace; background-color: #F5F5DC}
     <form action="<?PHP echo $_SERVER['SCRIPT_NAME'] ?>" method="POST">
         <table border="0">
             <tr>
-                <td>Dois últimos digitos do ano de graduação</td>
+                <td>Ano de Graduação</td>
                 <td>Nome</td>
                 <td>Idade</td>
                 <td>Saldo</td>
             </tr>
             <tr>
                 <td>
-                    <input type="number" name="gradYear" maxlength="4" size="5" />
+                    <input type="number" name="gradYear" maxlength="4" size="8" />
                 </td>
                 <td>
                     <input type="text" name="name" maxlength="255" size="40" />
                 </td>
                 <td>
-                    <input type="text" name="age" maxlength="2" size="5" />
+                    <input type="text" name="age" maxlength="2" size="8" />
                 </td>
                 <td>
                     <input type="number" step="0.01" name="balance" maxlength="16" size="10" />
