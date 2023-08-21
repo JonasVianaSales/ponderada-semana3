@@ -22,13 +22,13 @@
 
     /* Fields de Input da Ponderada*/
 
-    $ponderada_id = htmlentities($_POST['id']);
-    $ponderada_nome = htmlentities($_POST['nome']);
-    $ponderada_idade = htmlentities($_POST['idade']);
-    $ponderada_dinheiro = htmlentities($_POST['dinheiro']);
+    $ponderada_gradyear = htmlentities($_POST['gradyear']);
+    $ponderada_name = htmlentities($_POST['name']);
+    $ponderada_age = htmlentities($_POST['age']);
+    $ponderada_balance = htmlentities($_POST['balance']);
 
-    if (strlen($ponderada_id) && strlen($ponderada_nome) && strlen($ponderada_idade) && strlen($ponderada_dinheiro)) {
-        AddPonderada($connection, $ponderada_id, $ponderada_nome, $ponderada_idade, $ponderada_dinheiro);
+    if (strlen($ponderada_gradyear) && strlen($ponderada_name) && strlen($ponderada_age) && strlen($ponderada_balance)) {
+        AddPonderada($connection, $ponderada_gradyear, $ponderada_name, $ponderada_age, $ponderada_balance);
     }
     ?>
 
@@ -56,23 +56,23 @@
     <form action="<?PHP echo $_SERVER['SCRIPT_NAME'] ?>" method="POST">
         <table border="0">
             <tr>
-                <td>ID</td>
+                <td>Ano de Graduação</td>
                 <td>Nome</td>
                 <td>Idade</td>
-                <td>Dinheiro</td>
+                <td>Saldo</td>
             </tr>
             <tr>
                 <td>
-                    <input type="number" name="id" maxlength="16" size="20" />
+                    <input type="number" name="gradyear" maxlength="4" size="20" />
                 </td>
                 <td>
-                    <input type="text" name="nome" maxlength="255" size="60" />
+                    <input type="text" name="name" maxlength="255" size="60" />
                 </td>
                 <td>
-                    <input type="text" name="idade" maxlength="2" size="10" />
+                    <input type="text" name="age" maxlength="2" size="10" />
                 </td>
                 <td>
-                    <input type="number" step="0.01" name="dinheiro" maxlength="16" size="20" />
+                    <input type="number" step="0.01" name="balance" maxlength="16" size="20" />
                 </td>
                 <td>
                     <input type="submit" value="Enviar Dados" />
@@ -104,9 +104,9 @@
 
     </table>
 
-    <table border="1" cellpadding="2" cellspacing="2">
+    <table border="3" cellpadding="2" cellspacing="2">
         <tr>
-            <td>ID</td>
+            <td>Ano de Graduação</td>
             <td>Nome</td>
             <td>Idade</td>
             <td>Dinheiro</td>
@@ -156,14 +156,14 @@ function AddEmployee($connection, $name, $address)
 }
 
 /* Adiciona um campo para a ponderada. */
-function AddPonderada($connection, $id, $name, $age, $money)
+function AddPonderada($connection, $gradyear, $name, $age, $balance)
 {
-    $i = mysqli_real_escape_string($connection, $id);
+    $gy= mysqli_real_escape_string($connection, $gradyear);
     $n = mysqli_real_escape_string($connection, $name);
     $a = mysqli_real_escape_string($connection, $age);
-    $m = mysqli_real_escape_string($connection, $money);
+    $b = mysqli_real_escape_string($connection, $balance);
 
-    $query = "INSERT INTO ponderada (id, nome, idade, dinheiro) VALUES ('$i', '$n', '$a', '$m');";
+    $query = "INSERT INTO ponderada (gradyear, name, age, balance) VALUES ('$gy', '$n', '$a', '$b');";
 
     if (!mysqli_query($connection, $query))
         echo ("<p>Erro ao adicionar uma pessoa a ponderada.</p>");
